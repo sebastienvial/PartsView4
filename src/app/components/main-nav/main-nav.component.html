@@ -1,0 +1,76 @@
+<div class="pv-container">
+    <mat-toolbar *ngIf="!activePartsView" color="warn" class="pv-toolbar">
+        <h1 class="pv-app-name">PartsView 4.0</h1>
+        <span class="pv-spicer"></span>
+        <button mat-icon-button mat-raised-button routerLink="/login"><mat-icon>login</mat-icon></button>
+    </mat-toolbar>
+
+    <mat-toolbar *ngIf="activePartsView" color="warn" class="pv-toolbar">
+        <button mat-icon-button mat-raised-button routerLink="partsview/home"><mat-icon>home</mat-icon></button>
+        <button mat-icon-button (click)="snav.toggle()"><mat-icon>menu</mat-icon></button>
+        <h1 class="pv-app-name">PartsView 4.0</h1>
+        <span class="pv-spicer"></span>
+        <button mat-icon-button (click)="acvitveSearch()"><mat-icon>search</mat-icon></button>
+        <button mat-icon-button (click)="zoom(10)"><mat-icon>zoom_in</mat-icon></button>
+        <button mat-icon-button (click)="zoom(-10)"><mat-icon>zoom_out</mat-icon></button>
+        <button mat-icon-button (click)="snavParts.toggle()"><mat-icon>menu</mat-icon></button>
+        <button mat-icon-button (click)="logout()" mat-raised-button matTooltip="Info about the action"><mat-icon>logout</mat-icon></button>
+    </mat-toolbar>
+
+    <mat-sidenav-container>
+        <mat-sidenav #snav [mode]="'side'" [fixedInViewport]="true" fixedTopGap="70">
+            <app-navigation-dynamic></app-navigation-dynamic>
+        </mat-sidenav>
+        <mat-sidenav #snavParts position="end" [mode]="'side'" [fixedInViewport]="true" fixedTopGap="70">
+            <app-parts></app-parts>
+        </mat-sidenav>
+
+        <ng-content></ng-content>
+
+    </mat-sidenav-container>
+</div>
+
+
+
+
+
+
+
+
+
+
+<!-- <div class="pv-container">
+<mat-toolbar color="warn">
+    <button type="button" aria-label="Toggle sidenav" mat-icon-button (click)="drawer.toggle()" *ngIf="isHandset$ | async">
+     <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+  </button>
+    <span>PartsView4</span>
+    <span class="spicer"></span>
+    <button type="button" aria-label="Toggle sidenav" mat-icon-button (click)="drawer1.toggle()" *ngIf="isHandset$ | async">
+    <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+  </button>
+</mat-toolbar>
+
+
+
+<mat-sidenav-container class="sidenav-container">
+    <mat-sidenav #drawer class="sidenav" fixedInViewport [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'" [mode]="(isHandset$ | async) ? 'over' : 'side'" [opened]="(isHandset$ | async) === false">
+        <mat-toolbar>Navigation</mat-toolbar>
+        <app-navigation></app-navigation>
+    </mat-sidenav>
+    <mat-sidenav #drawer1 position="end" class="sidenav" fixedInViewport [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'" [mode]="(isHandset$ | async) ? 'over' : 'side'" [opened]="(isHandset$ | async) === false">
+        <mat-toolbar>Parts</mat-toolbar>
+        <app-parts></app-parts>
+    </mat-sidenav>
+
+    <mat-sidenav-content>
+
+
+        
+        <ng-content></ng-content>
+
+
+    </mat-sidenav-content>
+</mat-sidenav-container>
+
+</div> -->

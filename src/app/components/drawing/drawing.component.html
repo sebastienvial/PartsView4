@@ -1,0 +1,17 @@
+<div class="container">
+    <span *ngIf="activeSearch">
+<app-search ></app-search>
+</span>
+    <mat-card>
+        <mat-card-header>
+            <mat-button-toggle-group aria-label="Font Style" *ngIf="activeButton">
+                <mat-button-toggle class="toggle-page" *ngFor="let page of svgDrawingPages; let i = index" value="bold" (click)="onViewDrawing(page)">P0{{i+1}}</mat-button-toggle>
+            </mat-button-toggle-group>
+        </mat-card-header>
+        <mat-card-content>
+            <div (window:resize)="onResize($event)">
+                <object id="drawing" [data]=svgDrawing type="image/svg+xml"></object>
+            </div>
+        </mat-card-content>
+    </mat-card>
+</div>

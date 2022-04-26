@@ -1,0 +1,20 @@
+<!-- <button (click)="expandNode('BSA0380016|PCR0380E10|PCR0380S1001|PCR0380T1001001')">Expand Node</button>
+<button (click)="resetNode()">Reset </button> -->
+
+<mat-tree [dataSource]="dataSource" [treeControl]="treeControl" class="pv-tree">
+    <mat-tree-node *matTreeNodeDef="let node" matTreeNodePadding>
+        <button mat-icon-button disabled></button> {{node.item}}
+    </mat-tree-node>
+    <mat-tree-node *matTreeNodeDef="let node; when: hasChild" matTreeNodePadding matTreeNodePaddingIndent="15">
+        <button mat-icon-button [attr.aria-label]="'Toggle ' + node.item" matTreeNodeToggle>
+          <mat-icon class="mat-icon-rtl-mirror">
+            {{treeControl.isExpanded(node) ? 'expand_more' : 'chevron_right'}}
+          </mat-icon>
+        </button >
+        <span [ngClass]="activeNode == node.item ? 'pv-found' : ''"> 
+          <span *ngIf="node.drawing" (click)="onNaviguer(node.drawing, node.item)" class="pv-linknav">{{node.item}} - <b>{{node.designation}}</b></span>
+          <span *ngIf="!node.drawing" >{{node.item}} - <b>{{node.designation}}</b></span>
+        </span>  
+        <mat-progress-bar *ngIf="node.isLoading" mode="indeterminate" class="example-tree-progress-bar"></mat-progress-bar>
+    </mat-tree-node>
+</mat-tree>

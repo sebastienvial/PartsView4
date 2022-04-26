@@ -1,0 +1,36 @@
+<mat-card class="pv-container">
+    <mat-card-title>Parts detail <button mat-icon-button (click)="toggle3d()"><mat-icon>open_with</mat-icon></button></mat-card-title>
+    <app-view3d *ngIf="active3d"></app-view3d>
+    <mat-card-content class="mat-elevation-z8">
+        <div class="pv-parts" *ngIf="part">
+            <p>Repere {{part.repere}}</p>
+            <p *ngIf="part.contentType=='L'" (click)="onViewDrawing(part.numBobst)" class="pv-link">{{part.numBobst}}</p>
+            <p *ngIf="part.contentType=='I'">{{part.numBobst}}</p>
+            <p>{{part.description}}</p>
+            <p>{{part.note}}</p>
+        </div>
+        <table mat-table [dataSource]="dataSource" class="pv-container">
+
+            <!-- Repere Column -->
+            <ng-container matColumnDef="repere">
+                <th mat-header-cell *matHeaderCellDef id="repere"> Repere </th>
+                <td mat-cell *matCellDef="let element"> {{element.repere}} </td>
+            </ng-container>
+
+            <!-- N° Bobst Column -->
+            <ng-container matColumnDef="numBobst">
+                <th mat-header-cell *matHeaderCellDef id="numBobst"> N° Bobst </th>
+                <td mat-cell *matCellDef="let element"> {{element.numBobst}} </td>
+            </ng-container>
+
+            <!-- Description Column -->
+            <ng-container matColumnDef="description">
+                <th mat-header-cell *matHeaderCellDef id="description"> Description </th>
+                <td mat-cell *matCellDef="let element"> {{element.description}} </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+            <tr mat-row (click)="onActivePart(row.numBobst)" *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+    </mat-card-content>
+</mat-card>

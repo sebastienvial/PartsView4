@@ -1,0 +1,28 @@
+.pv-container {
+    height: 100%;
+    width: 500px;
+    overflow: auto;
+}
+
+table {
+    width: 100%;
+}
+
+.mat-row:hover {
+    cursor: pointer;
+    background: whitesmoke;
+}
+
+.pv-link {
+    color: blue;
+    cursor: pointer;
+}
+
+.pv-parts {
+    margin: 10px;
+    padding-top: 10px;
+}
+
+.container {
+    height: 100%;
+}
