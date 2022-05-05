@@ -7,7 +7,7 @@
 
     <mat-toolbar *ngIf="activePartsView" color="warn" class="pv-toolbar">
         <button mat-icon-button mat-raised-button routerLink="partsview/home"><mat-icon>home</mat-icon></button>
-        <button mat-icon-button (click)="snav.toggle()"><mat-icon>menu</mat-icon></button>
+        <button id="nav" mat-icon-button (click)="toggleNav(snav)"><mat-icon>menu</mat-icon></button>
         <h1 class="pv-app-name">PartsView 4.0</h1>
         <span class="pv-spicer"></span>
         <button mat-icon-button (click)="acvitveSearch()"><mat-icon>search</mat-icon></button>

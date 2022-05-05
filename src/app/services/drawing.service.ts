@@ -2,7 +2,6 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { DynamicFlatNode } from '../components/navigation-dynamic/navigation-dynamic.component';
 import { BomService } from './bom.service';
 import { PartsService } from './parts.service';
 import { PartsviewService } from './partsview.service';

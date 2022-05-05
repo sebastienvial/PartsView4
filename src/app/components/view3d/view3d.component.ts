@@ -7,7 +7,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class View3dComponent implements OnInit {
   public selected = false;
-  public readonly glbPath = `../../assets/BSA4321.glb`;
+  public readonly glbPath = `../../assets/BSA0322101500.glb`; //BSA0322101501
+  public aspectRatio = window.innerWidth / window.innerHeight;
 
   constructor() { }
 

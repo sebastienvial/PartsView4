@@ -3,6 +3,7 @@ import { AuthRequest } from "src/app/models/auth-request";
 import { AuthService } from "../auth.service";
 import { Router } from "@angular/router";
 import { NgForm } from "@angular/forms";
+import { MatInputModule } from "@angular/material/input";
 
 @Component({
   selector: "app-login-page",

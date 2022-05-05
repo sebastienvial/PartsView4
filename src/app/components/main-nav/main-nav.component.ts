@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/security/auth.service';
 import { DrawingService } from 'src/app/services/drawing.service';
+import { PartsviewService } from 'src/app/services/partsview.service';
 
 @Component({
   selector: 'app-main-nav',
@@ -12,8 +13,18 @@ export class MainNavComponent {
 
   activePartsView: boolean = false;
 
-  constructor(private router: Router, private drawingService: DrawingService, private authService: AuthService) {
-    authService.isAuthenticated().subscribe(res => this.activePartsView = res);
+  constructor(private router: Router, private partsViewService: PartsviewService, private drawingService: DrawingService, private authService: AuthService) {
+    authService.isAuthenticated().subscribe(res => {
+      if (res) {
+        partsViewService.partsViewNumber.subscribe(res =>{
+          if (res.length>1) this.activePartsView = true;
+        }) 
+
+      }
+      
+    });
+    
+
   }
 
   acvitveSearch() {
@@ -23,13 +34,10 @@ export class MainNavComponent {
     } else {
       this.drawingService.activeSearch.next(true);
     }
+  }
 
-    // if (!this.router.url.includes('search'))
-    //     //this.router.navigateByUrl('/search');
-    //     this.router.navigate(['/search']);
-    // else
-    //     this.router.navigateByUrl('/');
-    
+  toggleNav(snav): void {
+    snav.toggle();    
   }
 
   zoom(delta: number) {

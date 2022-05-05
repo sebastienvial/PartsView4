@@ -4,7 +4,6 @@ import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { PartsService } from 'src/app/services/parts.service';
 import { DrawingService } from 'src/app/services/drawing.service';
-import { MatSliderChange } from '@angular/material/slider';
 import { environment } from 'src/environments/environment';
 
 @Component({
@@ -86,7 +85,6 @@ export class DrawingComponent implements OnInit {
           }
                   
         }
-        //this.openDialog();
         
       }
       
@@ -117,43 +115,4 @@ export class DrawingComponent implements OnInit {
     this.drawingService.showDrawing(drawing);
     //this.partsService.showParts(drawing);
   }
-
-  openDialog() {
-     console.log('openDialog');
-
-     const dialogConfig = new MatDialogConfig();
-     dialogConfig.position = {
-       
-       'top' : this.posX.toString()+'px', 
-       'left': this.posY.toString()+'px'
-     };
-
-     dialogConfig.hasBackdrop = true;
-     dialogConfig.disableClose = false;
-
-     this.dialog.open(DialogPartDialog, dialogConfig);
-
-  }
-
-}
-
-
-
-
-@Component ({
-  selector: 'dialog-part-dialog',
-  templateUrl: 'dialog-part-dialog.html',
-})
-export class DialogPartDialog {
-
-    part!: Parts;
-
-    constructor (private pvService: PartsService) {
-
-      pvService.activePart.subscribe( value => {
-         this.part = value;
-      })
-
-    } 
-
 }
