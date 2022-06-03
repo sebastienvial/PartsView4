@@ -41,8 +41,9 @@ export class AuthService {
   isAuthenticated(): Observable<boolean> {
     return this.authenticated$.pipe(
       map((auth) => {
-        console.log("isAuthenticated", auth);
-        return (auth.token ? Boolean(auth) : false)
+        console.log("isAuthenticated001", auth.token);
+        if (auth.token == undefined) console.log("auth exist mais vide");
+        return (auth.token == undefined ? false : true)
     }
       )) ;
   }

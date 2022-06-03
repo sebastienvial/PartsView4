@@ -18,37 +18,34 @@ const STORAGE_KEY = "auth";
 export class HomeComponent implements OnInit {
 
   activePartsView: boolean = false;
+
   myPartsView: string[] = [];
   homeImg: String = '../../assets/MASTERFOLD 110.jpg'; 
-
+  lastUser!: AuthResponse;
 
   constructor(private router: Router, private partsViewService: PartsviewService, private authService: AuthService) {
     authService.isAuthenticated().subscribe(res => {
+      console.log("subsribtion de isAuthen", res );
       this.activePartsView = res;
    })
-
-  //  authService.getUser().subscribe(user => {
-  //    if (user && (user.roles[0]=='intern')){
-  //     this.myPartsView.push('ZNC_BSA03802000066_017_-');            
-  //     this.myPartsView.push('ZNC_BSA03802000069_017_-');
-  //   } else {
-  //     this.myPartsView.push('ZNC_BSA03802000066_017_-');
-  //   }
-
-  //  })
   }
 
   ngOnInit(): void {
 
-    if (this.activePartsView) {
+    const lastUser = JSON.parse(
+      localStorage.getItem(STORAGE_KEY) || '{}'
+    ) as AuthResponse;
+
+    console.log('ngOninit-HOME', lastUser.token);
+    if (lastUser.token != undefined) {
+    //In prod the request must be done on DB , customer table (futur dev)
+    if (lastUser.user.role.includes("intern")) {
         this.myPartsView.push('ZNC_BSA03802000066_017_-');            
-        this.myPartsView.push('ZNC_BSA03802000069_017_-');
+        this.myPartsView.push('ZNC_BSA03802000080_017_-');
       } else {
         this.myPartsView.push('ZNC_BSA03802000066_017_-');
       }
-      
-      console.log('mesPArtsview', this.myPartsView);
-    
+    } 
   }
 
   getUserAuthenticated(): AuthResponse {

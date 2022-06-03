@@ -7,8 +7,8 @@ import { AuthGuard } from './security/guards/auth.guard';
 import { LoginPageComponent } from './security/login-page/login-page.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: 'partsview/home', pathMatch: 'full' },  
-  { path: 'partsview/home', component: HomeComponent},
+  { path: '', redirectTo: 'home', pathMatch: 'full' },  
+  { path: 'home', component: HomeComponent},
   { path: 'login', component: LoginPageComponent},
   { path: 'view3d', component: View3dComponent},
   { path: 'partsview', component: DrawingComponent, canActivate: [AuthGuard]}, //prevent access to this page to unauthenticated users

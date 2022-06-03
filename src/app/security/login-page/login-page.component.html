@@ -43,13 +43,10 @@
 
     <form class="pv-login" #loginForm="ngForm" (submit)="onSubmit(loginForm)">
         <mat-card-content>
-            <mat-form-field class="example-full-width">
-                <input matNativeControl name="name" id="name" #nameField="ngModel" required [(ngModel)]="authRequest.name" type="text" matInput placeholder="Username" />
-            </mat-form-field>
-
-            <mat-form-field class="example-full-width">
-                <input matNativeControl type="password" name="password" id="password" #passwordField="ngModel" required [(ngModel)]="authRequest.password" matInput placeholder="Password" />
-            </mat-form-field>
+            <!-- <mat-form-field> -->
+            <input type="text" name="name" id="name" #nameField="ngModel" required [(ngModel)]="authRequest.name" placeholder="Username" />
+            <input type="password" name="password" id="password" #passwordField="ngModel" required [(ngModel)]="authRequest.password" placeholder="Password" />
+            <!-- </mat-form-field> -->
         </mat-card-content>
 
         <button type="submit">Log in</button>

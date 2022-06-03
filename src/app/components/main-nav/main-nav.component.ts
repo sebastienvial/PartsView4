@@ -45,8 +45,8 @@ export class MainNavComponent {
   }
 
   logout() {
+    this.router.navigateByUrl("home"); 
     this.authService.logout();
-    this.router.navigateByUrl("/partsview/home");
   }
 
 }

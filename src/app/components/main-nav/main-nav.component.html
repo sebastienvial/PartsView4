@@ -6,7 +6,7 @@
     </mat-toolbar>
 
     <mat-toolbar *ngIf="activePartsView" color="warn" class="pv-toolbar">
-        <button mat-icon-button mat-raised-button routerLink="partsview/home"><mat-icon>home</mat-icon></button>
+        <button mat-icon-button mat-raised-button routerLink="home"><mat-icon>home</mat-icon></button>
         <button id="nav" mat-icon-button (click)="toggleNav(snav)"><mat-icon>menu</mat-icon></button>
         <h1 class="pv-app-name">PartsView 4.0</h1>
         <span class="pv-spicer"></span>
@@ -14,7 +14,7 @@
         <button mat-icon-button (click)="zoom(10)"><mat-icon>zoom_in</mat-icon></button>
         <button mat-icon-button (click)="zoom(-10)"><mat-icon>zoom_out</mat-icon></button>
         <button mat-icon-button (click)="snavParts.toggle()"><mat-icon>menu</mat-icon></button>
-        <button mat-icon-button (click)="logout()" mat-raised-button matTooltip="Info about the action"><mat-icon>logout</mat-icon></button>
+        <button mat-icon-button (click)="logout()" mat-raised-button><mat-icon>logout</mat-icon></button>
     </mat-toolbar>
 
     <mat-sidenav-container>

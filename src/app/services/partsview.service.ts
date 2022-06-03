@@ -40,8 +40,6 @@ export interface Parts {
 export class PartsviewService {
 
   public treeData: EquipmentNode[] = [];
-  // public partsViewNumber: string = ""; //"ZNC_BSA03802000066_017_-";
-  
   public partsViewNumber: BehaviorSubject<string> = new BehaviorSubject<string>("");
   public partsViewReset: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
       
