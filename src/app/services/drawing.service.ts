@@ -15,7 +15,6 @@ export class DrawingService {
   
   public svgServer: string = environment.svgUrl;
 
-
   public activeSvg: BehaviorSubject<string> = new BehaviorSubject<string>("")     
   
   public svgDrawingPages: BehaviorSubject<string[]> = new BehaviorSubject<string[]>([""]);
@@ -41,19 +40,18 @@ export class DrawingService {
   }
 
   showDrawingFromItem(idItem: string) {
-     this.getDrawingFromItem(idItem).subscribe((res) => { 
+    this.getDrawingFromItem(idItem).subscribe((res) => { 
        console.log('Res de la recherche de dessin', res); 
        if(res.length>0){
         console.log('Show dessin', res); 
          this.showDrawing(res[0]+'.svg');
-         //this.partsService.showParts(res[0]+'.svg');
        } else {
          //if is not a drawing is a Part         
         console.log('Show PartFromNumpart', res);
          this.partsService.showPartFromNumPart(idItem);
        }        
     })
-  }
+  }  
 
   showDrawing(drawing:string) {
     this.getDrawings(drawing.substring(0,drawing.lastIndexOf('_'))).subscribe( (response) => {
@@ -65,7 +63,7 @@ export class DrawingService {
          this.activeButton.next(false);
        }
 
-       this.activeSvg.next(this.svgServer + drawing);
+       this.activeSvg.next(this.svgServer + drawing);       
        this.partsService.showParts(drawing);
 
     })  

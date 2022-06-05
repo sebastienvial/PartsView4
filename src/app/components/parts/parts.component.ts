@@ -18,8 +18,6 @@ export class PartsComponent {
 
   constructor(private partsviewService: PartsviewService, private drawingService: DrawingService, private partsService: PartsService) {
     
-    // Injection partsviewService
-    //this.dataSource = partsviewService.PARTS_DATA;
     this.partsService.activeListParts.subscribe( value => {
       this.dataSource = value;
     });
@@ -31,8 +29,7 @@ export class PartsComponent {
   }
 
   onActivePart(numPart: string){
-    //this.partsService.activePart1(numPart);
-    this.partsService.showPartFromNumPart(numPart);
+    //this.partsService.showPartFromNumPart(numPart);
     this.partsService.activeHotspotPart(numPart);
   }
 

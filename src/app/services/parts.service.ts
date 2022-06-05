@@ -17,7 +17,14 @@ export class PartsService {
   public activeListParts: BehaviorSubject<Parts[]> = new BehaviorSubject<Parts[]>(new Array<Parts>());
   public activePart: BehaviorSubject<Parts> = new BehaviorSubject<Parts>(this.part);  
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) { 
+    this.activeListParts.subscribe(res=>{
+      this.parts_data = res;
+    })
+    this.activePart.subscribe(res=>{
+      this.part = res;
+    })
+  }
 
   getParts(page: string): Observable<Parts[]> {
     return this.http.get<Parts[]> (this.apiUrl + '/catPartsPageContent/' + page);
@@ -25,7 +32,7 @@ export class PartsService {
 
   showParts(drawing:string) {
     // Request Parts containing in the drawing
-    console.log ('Begin showParts'); //à supprimer
+    console.log ('Begin showParts'); 
     let page: string = drawing.substring(0,drawing.indexOf('.'));
 
     this.getParts(page).subscribe( (response) => {
@@ -55,6 +62,7 @@ export class PartsService {
       nPart = eleRacine + nPart;
     }
 
+    console.log('fil003.3', numPart);
     for (let part of this.parts_data) {
         if (part.numBobst === nPart) {
             this.activePart.next(part);

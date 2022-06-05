@@ -1,7 +1,6 @@
 import { Component, OnInit} from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthResponse } from 'src/app/models/auth-response';
-import { User } from 'src/app/models/user';
 import { AuthService } from 'src/app/security/auth.service';
 import { PartsviewService } from 'src/app/services/partsview.service';
 
@@ -12,8 +11,6 @@ const STORAGE_KEY = "auth";
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss']
 })
-
-
 
 export class HomeComponent implements OnInit {
 

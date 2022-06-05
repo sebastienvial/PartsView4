@@ -22,10 +22,6 @@ export class BomService {
     });
   }
 
-  // getBom(): Observable<EquipmentNode[]> {
-  //   return this.http.get<EquipmentNode[]> (this.apiUrl + '/bom/' + this.idDoc);
-  // }
-
   getBomDynamic(idDoc: string, idParent: string): Observable<DynamicFlatNode[]> {
     return this.http.get<DynamicFlatNode[]> (this.apiUrl + '/bomd/' + this.idDoc + '/' + idParent);
   }

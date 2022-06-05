@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Parts, PartsviewService } from 'src/app/services/partsview.service';
+import { PartsviewService } from 'src/app/services/partsview.service';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
-import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
+import { MatDialog} from '@angular/material/dialog';
 import { PartsService } from 'src/app/services/parts.service';
 import { DrawingService } from 'src/app/services/drawing.service';
 import { environment } from 'src/environments/environment';
@@ -113,6 +113,5 @@ export class DrawingComponent implements OnInit {
     console.log('afficher page : ', page);
     var drawing = page + '.svg';
     this.drawingService.showDrawing(drawing);
-    //this.partsService.showParts(drawing);
   }
 }

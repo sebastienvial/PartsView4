@@ -19,8 +19,7 @@ export class SearchComponent implements OnInit {
 
   constructor(private partsViewService: PartsviewService, private bomService: BomService, private drawingService:DrawingService, private partsService: PartsService, private router: Router ) { }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void { }
 
   onSearch(searchTerm: string) {
     console.log('Debut search :', searchTerm );
@@ -33,26 +32,23 @@ export class SearchComponent implements OnInit {
   onShowDrawing(searchNode: EquipmentNode) {
     if(searchNode.drawing){
       //Show drawing
+      console.log('visu dessin search:', searchNode.drawing);
+
       this.drawingService.showDrawing(searchNode.drawing);
-      //Show Parts of drawing
-      //this.partsService.showParts(searchNode.drawing);     
-      //Open navigaation
-      if (searchNode.path) {
-        this.partsViewService.partsViewReset.next(true);
-        this.bomService.pathToExpand.next(searchNode.path);
-      }
+      this.drawingService.activeSvg.subscribe(res => {
+        if (searchNode.path) {
+          this.partsViewService.partsViewReset.next(true);
+          this.bomService.pathToExpand.next(searchNode.path);
+        }  
+      })
     } else {
+      console.log('visu dessin du parent', searchNode.parentId);
+
       this.drawingService.showDrawingFromItem(searchNode.parentId);
-      
-      if (this.drawingService.activeSvg.getValue().includes(searchNode.parentId)){
-        //show active parts on drawing and on partlist
-       this.partsService.showPartFromNumPart(searchNode.id);
-       console.log('debug001',this.drawingService.activeSvg.getValue() );
-       this.partsService.activeHotspotPart(searchNode.id);
-       if (searchNode.path) this.bomService.pathToExpand.next(searchNode.path);
-      }
-       
-      
+      this.partsService.showPartFromNumPart(searchNode.id);
+
+      this.partsService.activeHotspotPart(searchNode.id);
+      if (searchNode.path) this.bomService.pathToExpand.next(searchNode.path);
     }
   }
 
